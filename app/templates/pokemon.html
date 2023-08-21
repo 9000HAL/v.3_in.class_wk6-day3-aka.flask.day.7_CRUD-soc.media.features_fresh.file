@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+<form method="POST" class="px-5">
+    <div class="mb-5">
+      <label for="pokemon_name" class="form-label"><br><b><h1>WELCOME TO THE POKEMON FULL STACK WEB APP!</h1></b><br><br><br>Enter Pokemon Name In The Field To The Right:</label>
+      <input type="text" class="form" id="pokemon_name" name="pokemon_name">
+    </div>
+    <button type="submit" class="btn btn-primary">Get Results!</button>
+</form>
+
+{% if pokemon_data %}
+    <div class="my-3">
+        <img src="{{ pokemon_data.front_shiny_sprite }}" alt="{{ pokemon_data.name }} sprite">
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Pokemon Name</th>
+                <th scope="col">HP</th>
+                <th scope="col">Defense</th>
+                <th scope="col">Attack</th>
+                <th scope="col">Ability</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ pokemon_data.name }}</td>
+                <td>{{ pokemon_data.hp }}</td>
+                <td>{{ pokemon_data.defense }}</td>
+                <td>{{ pokemon_data.attack }}</td>
+                <td>{{ pokemon_data.ability }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Adding the "Catch" button here -->
+    <form method="POST" action="{{ url_for('main.catch_pokemon') }}">
+        <input type="hidden" name="pokemon_name" value="{{ pokemon_data.name }}">
+        <input type="hidden" name="image_url" value="{{ pokemon_data.front_shiny_sprite }}">
+        <button type="submit" class="btn btn-success">Catch this Pokémon!</button>
+    </form>
+{% endif %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

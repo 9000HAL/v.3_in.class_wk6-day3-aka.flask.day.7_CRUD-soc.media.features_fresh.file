@@ -1,0 +1,8 @@
+Single-database configuration for Flask.
+
+<!---{% else %} --->
+
+<!--(% if current_user.is_authenticated %) --->
+
+<!---{% endif %} ---->
+
