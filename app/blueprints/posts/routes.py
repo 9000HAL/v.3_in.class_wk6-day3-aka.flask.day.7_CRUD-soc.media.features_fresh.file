@@ -61,3 +61,22 @@ def update_post(post_id):
         flash(f'Successfully updated post {post.title}!', 'success')
         return redirect(url_for('main.home'))
     return render_template('update_post.html', form=form)
+
+
+#delete post
+@posts.route('/delete/<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get(post_id)
+    if current_user.id == post.user_id:
+        db.session.delete(post)
+        db.session.commit()
+        flash(f'Successfully deleted post {post.title}!', 'success')
+        return redirect(url_for('main.home'))
+    else:
+        flash("You cannot delete someone else's posts 🐍!", 'danger')
+        return redirect(url_for('main.home'))
+
+
+
+   
