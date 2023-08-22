@@ -37,7 +37,8 @@ def create_post():
 
 
 #update post
-@posts.route('/update/<int:post_id>', methods=['GET', 'POST']) #@posts.route('/update_post/<int:post_id>', methods=['GET', 'POST']) #c4 version
+@posts.route('/update/<int:post_id>', methods=['GET', 'POST']) #ca version
+#@posts.route('/update_post/<int:post_id>', methods=['GET', 'POST']) #c4 version
 @login_required
 def update_post(post_id):
     form = PostForm() #c4 version     form = PostForm(obj=post)
@@ -59,4 +60,4 @@ def update_post(post_id):
 
         flash(f'Successfully updated post {post.title}!', 'success')
         return redirect(url_for('main.home'))
-        return render_template('update_post.html', form=form)
+    return render_template('update_post.html', form=form)

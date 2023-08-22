@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Create a Post
+Update Your Post
 {% endblock %}
 
 {% block content %}
@@ -19,23 +19,10 @@ Create a Post
         <div class="mb-3">
             {{ form.caption.label }}
             {{ form.caption(class="form-control") }}
-            <!--not in ca <div id="emailHelp" class="form-text">Thank You For Creating A Post!</div> version--------------------->
+            <!--<div id="emailHelp" class="form-text">Thank You For Updating Your Post!</div>--->
         </div>
         {{ form.submit_btn(class="btn btn-primary d-block mx-auto") }}
       </form>
 </div>
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
