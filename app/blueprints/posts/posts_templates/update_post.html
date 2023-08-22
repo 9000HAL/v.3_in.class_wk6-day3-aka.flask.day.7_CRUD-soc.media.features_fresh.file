@@ -5,6 +5,7 @@ Update Your Post
 {% endblock %}
 
 {% block content %}
+<h1 class="text-center">Update Your Post!</h1>
 <div class="container w-25" id="form-container">
         <form action="" method="POST">
             {{ form.hidden_tag() }}
@@ -21,7 +22,7 @@ Update Your Post
             {{ form.caption(class="form-control") }}
             <!--<div id="emailHelp" class="form-text">Thank You For Updating Your Post!</div>--->
         </div>
-        {{ form.submit_btn(class="btn btn-primary d-block mx-auto") }}
+        {{ form.submit_btn(class="btn btn-primary d-block mx-auto", value='Update Post') }}
       </form>
 </div>
 {% endblock %}

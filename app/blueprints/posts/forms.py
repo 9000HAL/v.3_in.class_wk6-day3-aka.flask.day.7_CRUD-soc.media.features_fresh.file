@@ -14,4 +14,4 @@ class PostForm(FlaskForm):
     img_url = StringField('Image URL: ', validators=[DataRequired()])
     title = StringField('Title: ', validators=[DataRequired()])
     caption = StringField('Caption: ', validators=[DataRequired()])
-    submit_btn = SubmitField('Create Post')
+    submit_btn = SubmitField('Process Post')
