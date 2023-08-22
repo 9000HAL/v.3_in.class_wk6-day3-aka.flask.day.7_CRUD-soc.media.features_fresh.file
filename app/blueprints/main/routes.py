@@ -4,7 +4,7 @@ from . import main
 from app import db
 from app.models import User, Pokemon
 import requests
-from app.models import Post #per documentation c4------
+from app.models import Post, User #per documentation c4------
 
 
 # Assuming you're using blueprints, use @main.route for your routes
@@ -62,8 +62,11 @@ def get_pokemon_data(pokemon_name):
 
 
 
-
-
+@main.route('/contact')
+@login_required
+def contacts():
+    users = User.query.all()
+    return 'This Is The Users Contact Page!'
 
 
 

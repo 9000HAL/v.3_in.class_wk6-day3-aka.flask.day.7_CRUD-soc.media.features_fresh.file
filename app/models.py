@@ -3,11 +3,24 @@ from flask_login import UserMixin
 from datetime import datetime
 from werkzeug.security import generate_password_hash
 
+
+
+
+followers_followed = db.Table(
+    'followers_followed',
+    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+)
+
+
+
 # Association table between User and Pokemon
 user_pokemon = db.Table('user_pokemon',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('pokemon_id', db.Integer, db.ForeignKey('pokemon.id'), primary_key=True)
 )
+
+
 
 # User model
 class User(UserMixin, db.Model):
@@ -18,13 +31,22 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String, nullable=False) 
     created_on = db.Column(db.DateTime, default=datetime.utcnow())
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+    followed = db.relationship('User',
+    secondary = followers_followed,
+    primaryjoin = (followers_followed.columns.follower_id == id),
+    secondaryjoin = (followers_followed.columns.followed_id == id),
+    backref = db.backref('followers_followed', lazy='dynamic'),
+    lazy='dynamic'
+    )
     
     # Relation to Pokemon model
     pokemons = db.relationship('Pokemon', secondary=user_pokemon, back_populates='users')
     
+    #hashes our password when a user signs up
     def hash_password(self, signup_password):
         return generate_password_hash(signup_password)
     
+    # This method will assign our columns with their respective values
     def from_dict(self, user_data):
         self.first_name = user_data['first_name']
         self.last_name = user_data['last_name']

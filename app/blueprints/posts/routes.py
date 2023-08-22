@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 from . import posts
 from app.blueprints.posts.forms import PostForm #per c4 extra or leave alone uncommented out??????
 from .forms import PostForm #############ca version was commented out ----error????????
-from app.models import Post
+from app.models import Post, User
 from app import db
 
 @posts.route('/create_post', methods=['GET', 'POST'])
@@ -78,5 +78,31 @@ def delete_post(post_id):
         return redirect(url_for('main.home'))
 
 
+#follow route
+@posts.route('/follow/<int:user_id>')
+@login_required
+def follow(user_id):
+    user = User.query.get(user_id)
+    if user:
+        current_user.followed.append(user)
+        db.session.commit()
+        flash(f'Successfully followed {user.first_name}!', 'success')
+        return redirect(url_for('main.contacts'))
+    else:
+        flash('That user does not exist! 😩', 'warning')
+        return redirect(url_for('main.contacts'))
+    
 
-   
+#unfollow route
+@posts.route('/unfollow/<int:user_id>')
+@login_required
+def unfollow(user_id):
+    user = User.query.get(user_id)
+    if user:
+        current_user.followed.remove(user)
+        db.session.commit()
+        flash(f'You unfollowed {user.first_name}!', 'warning')
+        return redirect(url_for('main.contacts'))
+    else:
+        flash('You cannot unfollow a user you are not unfollowing! 😩', 'danger')
+        return redirect(url_for('main.contacts'))   
