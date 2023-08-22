@@ -29,6 +29,7 @@ def catch_pokemon():
 
 
 
+
 @main.route('/')
 @main.route('/home')
 def home():
