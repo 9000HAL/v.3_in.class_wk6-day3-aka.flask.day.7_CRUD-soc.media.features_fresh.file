@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Thieves Contact Page
+{% endblock %}
+
+{% block content %}
+    {% for user in users %}
+        <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded mx-auto" style="width: 18rem;">
+            <img src="{{url_for('static', filename='images/ct.logo Small.png')}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{user.first_name}}</h5>
+                    <a href="{{ url_for('posts.follow', user_id=user.id) }}" class="btn btn-primary">Follow</a>
+                    <a href="{{ url_for('posts.unfollow', user_id=user.id) }}" class="btn btn-danger">Unfollow</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+
+
+
+

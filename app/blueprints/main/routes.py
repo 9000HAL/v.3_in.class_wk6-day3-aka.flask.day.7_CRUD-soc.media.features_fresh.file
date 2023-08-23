@@ -66,7 +66,7 @@ def get_pokemon_data(pokemon_name):
 @login_required
 def contacts():
     users = User.query.all()
-    return 'This Is The Users Contact Page!'
+    return render_template('contacts.html', users=users)
 
 
 
