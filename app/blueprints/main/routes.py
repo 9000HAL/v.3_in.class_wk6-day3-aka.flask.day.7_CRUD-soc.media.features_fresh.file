@@ -66,6 +66,10 @@ def get_pokemon_data(pokemon_name):
 @login_required
 def contacts():
     users = User.query.all()
+    for user in users:
+        if user in current_user.followed:
+            user.isFollowing = True
+
     return render_template('contacts.html', users=users)
 
 
